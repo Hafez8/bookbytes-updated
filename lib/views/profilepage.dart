@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:bookbytes/shared/mydrawer.dart';
 import 'package:bookbytes/views/loginpage.dart';
 import 'package:bookbytes/views/registrationpage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../models/user.dart';
 
@@ -16,6 +19,56 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   late double screenWidth, screenHeight;
+  late ImagePicker _imagePicker;
+  XFile? _pickedImage; // Updated to remove the late keyword
+
+  @override
+  void initState() {
+    super.initState();
+    _imagePicker = ImagePicker();
+  }
+
+  Future<void> _showImageSourceOptions() async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Choose Image Source'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                GestureDetector(
+                  child: const Text('Camera'),
+                  onTap: () async {
+                    Navigator.pop(context);
+                    final pickedImage = await _imagePicker.pickImage(source: ImageSource.camera);
+                    if (pickedImage != null) {
+                      setState(() {
+                        _pickedImage = pickedImage;
+                      });
+                    }
+                  },
+                ),
+                const Padding(padding: EdgeInsets.all(8.0)),
+                GestureDetector(
+                  child: const Text('Gallery'),
+                  onTap: () async {
+                    Navigator.pop(context);
+                    final pickedImage = await _imagePicker.pickImage(source: ImageSource.gallery);
+                    if (pickedImage != null) {
+                      setState(() {
+                        _pickedImage = pickedImage;
+                      });
+                    }
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +106,25 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Card(
                 child: Row(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      width: screenWidth * 0.3,
-                      height: screenHeight * 0.15,
-                      child: Image.asset(
-                        'assets/images/profile.png',
-                        fit: BoxFit.contain,
+                    GestureDetector(
+                      onTap: () async {
+                        _showImageSourceOptions();
+                      },
+                      child: ClipOval( // Wrap with ClipOval to make it circular
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          width: screenWidth * 0.3,
+                          height: screenHeight * 0.15,
+                          child: _pickedImage != null
+                              ? Image.file(
+                                  File(_pickedImage!.path),
+                                  fit: BoxFit.cover, // Use BoxFit.cover to ensure the image covers the circular container
+                                )
+                              : Image.asset(
+                                  'assets/images/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
+                        ),
                       ),
                     ),
                     Expanded(
