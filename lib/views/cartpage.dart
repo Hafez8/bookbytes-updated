@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'package:bookbytes/models/cart.dart';
 import 'package:bookbytes/models/user.dart';
 import 'package:bookbytes/shared/mydrawer.dart';
+import 'package:bookbytes/views/billscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../shared/myserverconfig.dart';
+
 
 class CartPage extends StatefulWidget {
   final User userdata;
@@ -116,11 +118,19 @@ Widget build(BuildContext context) {
                         ),
                         const SizedBox(height: 16),
                         ElevatedButton(
-                          onPressed: () {},
+                            onPressed: () async {
+                            await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (content) => BillScreen(
+                                          user: widget.userdata,
+                                          totalprice: total,
+                                        )));
+                            loadUserCart();
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blue,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 24, vertical: 12),
+                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                           ),
                           child: const Text("Proceed to Payment"),
                         ),

@@ -1,3 +1,3 @@
 class MyServerConfig {
-  static const String server = "http://10.144.129.68";
+  static const String server = "https://infnitvoid.com/";
 }
