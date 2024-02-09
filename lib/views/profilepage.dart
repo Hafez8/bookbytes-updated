@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bookbytes/shared/mydrawer.dart';
+import 'package:bookbytes/views/change_pss.dart';
 import 'package:bookbytes/views/loginpage.dart';
 import 'package:bookbytes/views/registrationpage.dart';
 import 'package:flutter/material.dart';
@@ -175,7 +176,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   buildProfileButton("UPDATE NAME", () {}),
                   buildDivider(),
-                  buildProfileButton("UPDATE PASSWORD", () {}),
+                  buildProfileButton("UPDATE PASSWORD", () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChangePasswordPage(),
+                      ),
+                    );
+                  }),
                   buildDivider(),
                   buildProfileButton("UPDATE PHONE NUMBER", () {}),
                   buildDivider(),

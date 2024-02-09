@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 14, 2024 at 01:28 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: localhost:3306
+-- Generation Time: Feb 10, 2024 at 02:09 AM
+-- Server version: 10.3.39-MariaDB-cll-lve
+-- PHP Version: 8.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bookbytes`
+-- Database: `infnidrc_bookbytes`
 --
 
 -- --------------------------------------------------------
@@ -79,8 +79,10 @@ CREATE TABLE `tbl_carts` (
 --
 
 INSERT INTO `tbl_carts` (`cart_id`, `buyer_id`, `seller_id`, `book_id`, `cart_qty`, `cart_status`, `order_id`, `cart_date`) VALUES
-(0, '15', '3', '1', 1, 'New', '', '2024-01-14 19:29:07.308159'),
-(0, '15', '3', '4', 1, 'New', '', '2024-01-14 19:43:03.060596');
+(0, '18', '3', '1', 1, 'New', '', '2024-02-10 00:57:30.494068'),
+(0, '18', '3', '2', 1, 'New', '', '2024-02-10 00:57:34.814583'),
+(0, '20', '3', '8', 1, 'New', '', '2024-02-10 01:01:26.003774'),
+(0, '20', '3', '7', 1, 'New', '', '2024-02-10 01:01:30.392299');
 
 -- --------------------------------------------------------
 
@@ -97,14 +99,6 @@ CREATE TABLE `tbl_orders` (
   `order_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tbl_orders`
---
-
-INSERT INTO `tbl_orders` (`order_id`, `buyer_id`, `seller_id`, `order_total`, `order_date`, `order_status`) VALUES
-(1, '7', '3', 750.00, '2023-12-17 12:36:03.000000', 'Delivered'),
-(2, '8', '9', 250.00, '2023-12-17 13:11:14.000000', 'New');
-
 -- --------------------------------------------------------
 
 --
@@ -116,25 +110,26 @@ CREATE TABLE `tbl_users` (
   `user_email` varchar(50) NOT NULL,
   `user_name` varchar(100) NOT NULL,
   `user_password` varchar(40) NOT NULL,
-  `user_datereg` datetime(6) NOT NULL DEFAULT current_timestamp(6),
-  `user_type` varchar(10) NOT NULL
+  `user_type` varchar(30) NOT NULL,
+  `user_datereg` datetime(6) NOT NULL DEFAULT current_timestamp(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`user_id`, `user_email`, `user_name`, `user_password`, `user_datereg`, `user_type`) VALUES
-(8, 'hafiz@gmail.com', 'hafiz', 'c7239b241703de2af0d037da0fe82605029c9dd9', '2023-11-26 12:52:24.522306', ''),
-(9, 'aiman@gmail.com', 'Aiman', '1d039fe4426d9b9a5ed3b0d2278a264dd63c07ce', '2023-12-09 13:10:48.177122', ''),
-(10, 'abu@gmail.com', 'Abu', '6cd6604c4b1275226a95060e4cd15f370ebd2e38', '2023-12-09 22:18:25.290960', ''),
-(11, 'apih@gmail.com', 'apih', '4f0b2c2bea616681e66bb42172b95af6432c4cb6', '2023-12-09 22:50:17.561576', ''),
-(12, 'Akmal@gmail.com', 'Akmal', '083ca36ec4a27e253d5e24118d458b275ad9a3df', '2023-12-09 22:52:56.711893', ''),
-(13, 'ajib@gmail.com', 'ajib', 'd78dd2d4cb056de40be42e69fbf38b0711a1a092', '2023-12-09 23:31:22.181374', ''),
-(14, 'sarah@gmail.com', 'sarah', '8fa179c7e4a182c524074081bc07d010e7dd29b1', '2023-12-10 00:02:19.810059', ''),
-(15, 'apiss1@gmail.com', 'Apiss', '0135accf1bb2d797832f27e826fd2b4f3219dfb4', '2024-01-12 23:19:23.322934', ''),
-(16, 'ak123@gmail.com', 'Ahmad Akmal', '0135accf1bb2d797832f27e826fd2b4f3219dfb4', '2024-01-14 01:23:38.389532', ''),
-(17, 'Aliya123@gmail.com', 'Nur Aliya', '0135accf1bb2d797832f27e826fd2b4f3219dfb4', '2024-01-14 01:26:25.140442', 'Buyer');
+INSERT INTO `tbl_users` (`user_id`, `user_email`, `user_name`, `user_password`, `user_type`, `user_datereg`) VALUES
+(8, 'hafiz@gmail.com', 'hafiz', 'c7239b241703de2af0d037da0fe82605029c9dd9', '', '2023-11-26 12:52:24.522306'),
+(9, 'aiman@gmail.com', 'Aiman', '1d039fe4426d9b9a5ed3b0d2278a264dd63c07ce', '', '2023-12-09 13:10:48.177122'),
+(10, 'abu@gmail.com', 'Abu', '6cd6604c4b1275226a95060e4cd15f370ebd2e38', '', '2023-12-09 22:18:25.290960'),
+(11, 'apih@gmail.com', 'apih', '4f0b2c2bea616681e66bb42172b95af6432c4cb6', '', '2023-12-09 22:50:17.561576'),
+(12, 'Akmal@gmail.com', 'Akmal', '083ca36ec4a27e253d5e24118d458b275ad9a3df', '', '2023-12-09 22:52:56.711893'),
+(13, 'ajib@gmail.com', 'ajib', 'd78dd2d4cb056de40be42e69fbf38b0711a1a092', '', '2023-12-09 23:31:22.181374'),
+(14, 'sarah@gmail.com', 'sarah', '8fa179c7e4a182c524074081bc07d010e7dd29b1', '', '2023-12-10 00:02:19.810059'),
+(15, 'apizz123@gmail.com', 'Apiss', '74fb031e8fbc326436bb6973bfcbe3f6666c69c0', '', '2024-01-21 12:04:24.782738'),
+(17, 'aiman123@gmail.com', 'aiman1', '0135accf1bb2d797832f27e826fd2b4f3219dfb4', '', '2024-01-30 22:08:16.843132'),
+(18, 'Kimi123@gmail.com', 'Kimi', '74fb031e8fbc326436bb6973bfcbe3f6666c69c0', 'Buyer', '2024-01-30 22:35:01.487743'),
+(20, 'jebat@gmail.com', 'Jebat', '74fb031e8fbc326436bb6973bfcbe3f6666c69c0', 'Buyer', '2024-02-10 01:00:52.638685');
 
 --
 -- Indexes for dumped tables
@@ -155,7 +150,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

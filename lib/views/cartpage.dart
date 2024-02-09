@@ -19,7 +19,7 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   List<Cart> cartList = <Cart>[];
-  User get userdata => widget.userdata ?? User();
+  User get userdata => widget.userdata;
   double total = 0.0;
   bool isLoading = true;
 
