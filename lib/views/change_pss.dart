@@ -42,7 +42,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   TextFormField(
                     controller: _currentPasswordController,
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Current Password',
                       prefixIcon: Icon(Icons.lock),
                     ),
@@ -53,11 +53,11 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: _newPasswordController,
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'New Password',
                       prefixIcon: Icon(Icons.lock_open),
                     ),
@@ -68,11 +68,11 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: _confirmPasswordController,
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Confirm New Password',
                       prefixIcon: Icon(Icons.lock_outline),
                     ),
@@ -86,14 +86,14 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _updatePassword();
                       }
                     },
-                    child: Text('Update Password'),
+                    child: const Text('Update Password'),
                   ),
                 ],
               ),

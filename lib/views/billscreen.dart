@@ -24,7 +24,7 @@ class _BillScreenState extends State<BillScreen> {
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..loadRequest(
         Uri.parse(
-            'https://slumberjer.com/bookbytes/php/payment.php?&userid=${widget.user.userid}&email=${widget.user.useremail}&name=${widget.user.username}&amount=${widget.totalprice}'),
+            'https://infnitvoid.com/bookbytes/php/payment.php?&userid=${widget.user.userid}&email=${widget.user.useremail}&name=${widget.user.username}&amount=${widget.totalprice}'),
       );
   }
 
