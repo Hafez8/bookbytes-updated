@@ -111,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       onTap: () async {
                         _showImageSourceOptions();
                       },
-                      child: ClipOval( // Wrap with ClipOval to make it circular
+                      child: ClipOval( 
                         child: Container(
                           padding: const EdgeInsets.all(8),
                           width: screenWidth * 0.3,
@@ -119,7 +119,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: _pickedImage != null
                               ? Image.file(
                                   File(_pickedImage!.path),
-                                  fit: BoxFit.cover, // Use BoxFit.cover to ensure the image covers the circular container
+                                  fit: BoxFit.cover, 
                                 )
                               : Image.asset(
                                   'assets/images/profile.png',

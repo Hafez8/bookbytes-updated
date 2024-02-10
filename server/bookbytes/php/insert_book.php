@@ -33,12 +33,3 @@ if ($conn->query($sqlinsert) === TRUE) {
 	$response = array('status' => 'failed', 'data' => $sqlinsert);
 	sendJsonResponse($response);
 }
-
-
-function sendJsonResponse($sentArray)
-{
-    header('Content-Type: application/json');
-    echo json_encode($sentArray);
-}
-
-?>
